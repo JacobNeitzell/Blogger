@@ -1,18 +1,18 @@
 <template>
-  <div class="Ad-card">
+  <div class="jad-card">
 
-    <div class="bg-dark text-light sidebar">
-      <img :src="jads.square" :alt="jads.title" :class="image-fluid">
+    <div class="bg-dark text-light sidebar ">
+      <img :src="jads.tall" :alt="jads.title">
     </div>
 
   </div>
 
 
 
-  <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="adsCanvas"
-    aria-labelledby="adsCanvasLabel">
+  <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="jadsCanvas"
+    aria-labelledby="jadsCanvasLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="adsCanvasLabel"><img src="" alt=""></h5>
+      <h5 class="offcanvas-title" id="jadsCanvasLabel"><img :src="jads.tall" :alt="jads.title"></h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -25,10 +25,7 @@
 
 
 <script>
-import { onMounted } from "vue";
 import { Jad } from "../models/Jad.js";
-import Pop from "../utils/Pop.js";
-
 export default {
   props: {
     jads: { type: Jad, required: true }
@@ -38,17 +35,6 @@ export default {
 
 
   setup() {
-    async function getJads() {
-      try {
-        await jadsService.getJads()
-      } catch (error) {
-        Pop.error(error, '[GettingJads]')
-      }
-    }
-
-    onMounted(() => {
-      getJads()
-    })
 
 
     return {}

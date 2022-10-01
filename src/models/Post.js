@@ -9,6 +9,8 @@ export class Post {
     this.creatorId = data.creatorId
     this.likeIds = data.likeIds
     this.creator = new Account(data.creator)
+    this.page = data.page
+    this.totalPages = data.totalPages
 
 
 

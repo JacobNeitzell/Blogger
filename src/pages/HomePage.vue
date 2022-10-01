@@ -2,8 +2,15 @@
   <div class="container-fluid">
     <div class=" row">
       <PostCard v-for="p in posts" :key="p.id" :posts="p" />
+      <div class="col-12">
+        <button @click="changePage(olderPage)" :disabled="!olderPage" class="btn btn-danger me-2"
+          :class="{'disabled' : !olderPage}">Previous</button>
+        <button @click="changePage(newerPage)" :disabled="!newerPage"
+          :class="`btn btn-danger ${!newerPage ? 'btn-info' : ''}`">Next</button>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -28,9 +35,16 @@ export default {
 
 
     return {
-      posts: computed(() => AppState.posts)
-
-
+      posts: computed(() => AppState.posts),
+      newerPage: computed(() => AppState.newerPage),
+      olderPage: computed(() => AppState.olderPage),
+      async changePage(page) {
+        try {
+          await postsService.getPost(page)
+        } catch (error) {
+          Pop.error(error, "[ChangingPages]")
+        }
+      },
 
 
 

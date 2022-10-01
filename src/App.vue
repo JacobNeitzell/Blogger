@@ -36,8 +36,8 @@
 
       </div>
     </div>
-    <div class="col-md-3 float-md-end mb-3 ms-md-3">
-      <JadCard v-for="j in jads" :key="j.id" :jads="j" />
+    <div class="jad-card col-md-3 float-md-end mb-3 ms-md-3">
+      <JadCard v-for="j in jads" :key="j.title" :jads="j" />
     </div>
 
     <router-view />
@@ -45,7 +45,7 @@
 
 
 
-  <!-- TODO make sure to duplicate for ads on the other side  -->
+  <!-- TODO make sure to duplicate for jads on the other side  -->
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="LoginCanvas"
     aria-labelledby="LoginCanvasLabel">
     <div class="offcanvas-header">
@@ -63,15 +63,27 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import Login from "./components/Login.vue"
 import JadCard from "./components/JadCard.vue"
-import { Jad } from "./models/Jad.js"
+import { jadsService } from "./services/JadsService.js"
+
 
 export default {
   setup() {
+    async function getJads() {
+      try {
+        await jadsService.getJads()
+      } catch (error) {
+        Pop.error(error, '[GettingJads]')
+      }
+    }
+
+    onMounted(() => {
+      getJads()
+    })
     return {
       appState: computed(() => AppState),
       jads: computed(() => AppState.jads)
@@ -82,4 +94,9 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
+
+.jad-card {
+  position: absolute;
+  position: sticky;
+}
 </style>
