@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class=" row">
-      <PostCard v-for="p in posts" :key="p._id" :posts="p" />
+      <PostCard v-for="p in posts" :key="p.id" :posts="p" />
     </div>
   </div>
 </template>

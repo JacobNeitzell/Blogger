@@ -2,20 +2,45 @@
   <header>
     <Navbar />
   </header>
+
   <main class="container-fluid">
-    <router-view />
     <div class="row">
-      <div class="col-md-2 d-none d-md-block bg-dark text-light sidebar">
+      <div class="col-md-4  float-md-start d-none d-md-block bg-dark text-light sidebar">
         <Login />
         <button class="btn" data-bs-target="#loginCanvas" data-bs-toggle="offcanvas">
           <span class="text-success lighten-30 selectable text-uppercase">
-            Picture / Name / Links
           </span>
         </button>
+        <span class="text-success lighten-30 text-uppercase">Name
+        </span>
+        <div class="col-md-2 d-none d-md-block bg-dark text-light sidebar">
+          <button class="btn" data-bs-target="#loginCanvas" data-bs-toggle="offcanvas">
+            <span class="text-success lighten-30 selectable text-uppercase">Links
+            </span>
+          </button>
+        </div>
+        <div class="col-md-2 d-none d-md-block bg-dark text-light sidebar">
+          <button class="btn" data-bs-target="#loginCanvas" data-bs-toggle="offcanvas">
+            <span class="text-success lighten-30 selectable text-uppercase">Links
+            </span>
+          </button>
+        </div>
+        <div class="col-md-2 d-none d-md-block bg-dark text-light sidebar">
+          <button class="btn" data-bs-target="#loginCanvas" data-bs-toggle="offcanvas">
+            <span class="text-success lighten-30 selectable text-uppercase">Links
+            </span>
+          </button>
+        </div>
       </div>
       <div class="col-md-10 main-content">
+
       </div>
     </div>
+    <div class="col-md-3 float-md-end mb-3 ms-md-3">
+      <JadCard v-for="j in jads" :key="j.id" :jads="j" />
+    </div>
+
+    <router-view />
   </main>
 
 
@@ -42,14 +67,17 @@ import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import Login from "./components/Login.vue"
+import JadCard from "./components/JadCard.vue"
+import { Jad } from "./models/Jad.js"
 
 export default {
   setup() {
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      jads: computed(() => AppState.jads)
     }
   },
-  components: { Navbar, Login }
+  components: { Navbar, Login, JadCard }
 }
 </script>
 <style lang="scss">

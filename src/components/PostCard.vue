@@ -5,8 +5,10 @@
         <img :src="posts.imgUrl" class="image-fluid">
         <div class="card-body">
           <h5>{{posts.body}}</h5>
+          <CreatorCard :creator="posts.creator " />
         </div>
       </div>
+
     </div>
 
 
@@ -19,29 +21,27 @@ import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState.js";
 import { Account } from "../models/Account.js";
 import { Post } from "../models/Post.js";
+import ProfileCard from "./ProfileCard.vue";
+import CreatorCard from "./CreatorCard.vue";
 
 export default {
   props: {
     posts: { type: Post, required: true },
   },
-
-
-
-
   setup() {
     return {
-      // account: computed(() => AppState.account),
-      // post: computed(() => AppState.posts)
-    }
-  }
+      coverImg: computed(() => `url(${props.post.coverimg})`)
+    };
+  },
+  components: { ProfileCard, CreatorCard }
 }
 </script>
 
 
 <style lang="scss" scoped>
 img {
-  max-width: fit-content;
-  max-height: fit-content;
+  max-width: 90rem;
+  max-height: 80rem;
   object-fit: fill;
 }
 </style>

@@ -6,10 +6,20 @@ import { api } from "./AxiosService.js";
 class PostsService {
 
   async getPost() {
-    // AppState.posts = []
+    AppState.posts = []
     const res = await api.get('api/posts')
     AppState.posts = res.data.posts.map(p => new Post(p))
     console.log(res.data)
+  }
+
+  async getPostByCreatorId(creatorId) {
+    AppState.posts = []
+    const res = await api.get(`api/posts`, {
+      params: {
+        creatorId
+      }
+    })
+    AppState.posts = res.data.posts.map(p => new Post(p))
   }
 
 
