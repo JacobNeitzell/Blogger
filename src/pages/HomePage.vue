@@ -2,11 +2,13 @@
   <div class="container-fluid">
     <div class=" row">
       <PostCard v-for="p in posts" :key="p.id" :posts="p" />
-      <div class="col-12">
-        <button @click="changePage(olderPage)" :disabled="!olderPage" class="btn btn-danger me-2"
-          :class="{'disabled' : !olderPage}">Previous</button>
+      <!-- TODO make next and previous sticky  -->
+      <div class="col-12 d-flex justify-content-between">
         <button @click="changePage(newerPage)" :disabled="!newerPage"
-          :class="`btn btn-danger ${!newerPage ? 'btn-info' : ''}`">Next</button>
+          :class="`btn btn-danger ${!newerPage ? 'btn-info' : ''}`">Previous</button>
+        <button @click="changePage(olderPage)" :disabled="!olderPage" class="btn btn-danger me-2"
+          :class="{'disabled' : !olderPage}">Next</button>
+
       </div>
     </div>
   </div>

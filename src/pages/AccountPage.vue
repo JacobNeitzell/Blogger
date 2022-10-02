@@ -1,20 +1,30 @@
 <template>
   <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
+    <ProfileCard :creator="account" />
+
+    <div class="container">
+      <div class="row my-3">
+        <div class="col-6 m-auto">
+          <AccountForm class="elevation-2" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from '../AppState'
+import ProfileCard from "../components/ProfileCard.vue";
+import AccountForm from "../components/AccountForm.vue";
 export default {
   setup() {
     return {
       account: computed(() => AppState.account)
-    }
-  }
+
+    };
+  },
+  components: { ProfileCard, AccountForm }
 }
 </script>
 
