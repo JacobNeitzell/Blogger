@@ -1,3 +1,4 @@
+
 import { AppState } from "../AppState.js";
 import { Post } from "../models/Post.js";
 import { api, SandboxServer } from "./AxiosService.js";
@@ -13,6 +14,12 @@ class PostsService {
     AppState.olderPage = res.data.older
     console.log(res.data)
   }
+
+
+
+
+
+
 
   async getPostByCreatorId(creatorId) {
     AppState.posts = []
@@ -33,7 +40,17 @@ class PostsService {
     AppState.posts = AppState.posts.filter(p => p.id != id)
   }
 
-
+  async getPostsbySearchterm(term, page = 1) {
+    const res = await api.get('/api/posts', {
+      params: {
+        query: term, page
+      }
+    })
+    AppState.posts = res.data.posts.map(p => new Post(p))
+    AppState.newerPage = res.data.newerPage
+    AppState.olderPage = res.data.totalPages
+    AppState.term = term
+  }
 
 }
 export const postsService = new PostsService

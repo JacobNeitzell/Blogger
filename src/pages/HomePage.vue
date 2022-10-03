@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class=" row">
+      <SearchForm />
       <PostForm v-if="account.id" />
       <PostCard v-for="p in posts" :key="p.id" :posts="p" @deletePosts="deletePosts(p.id)" />
       <!-- TODO make next and previous sticky  -->
@@ -24,6 +25,7 @@ import PostCard from "../components/PostCard.vue";
 import { postsService } from '../services/PostsService.js';
 import Pop from "../utils/Pop.js";
 import PostForm from "../components/PostForm.vue";
+import SearchForm from "../components/SearchForm.vue";
 export default {
   setup() {
     async function getPost() {
@@ -69,7 +71,7 @@ export default {
     };
 
   },
-  components: { PostCard, PostForm }
+  components: { PostCard, PostForm, SearchForm }
 }
 </script>
 

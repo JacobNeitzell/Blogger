@@ -1,7 +1,6 @@
 <template>
   <div class="jad-card">
-
-    <div class="bg-dark text-light sidebar ">
+    <div class=" text-light sidebar ">
       <img :src="jads.tall" :alt="jads.title">
     </div>
 
@@ -9,16 +8,7 @@
 
 
 
-  <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="jadsCanvas"
-    aria-labelledby="jadsCanvasLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="jadsCanvasLabel"><img :src="jads.tall" :alt="jads.title"></h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
 
-    </div>
-  </div>
 
 
 </template>

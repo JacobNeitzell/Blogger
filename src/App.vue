@@ -5,7 +5,7 @@
 
   <main class="container-fluid">
     <div class="row">
-      <SidebarCard />
+
       <div class="col-md-10 main-content">
 
       </div>

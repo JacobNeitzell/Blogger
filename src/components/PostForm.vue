@@ -1,6 +1,6 @@
 <template>
 
-  <form @submit.prevent="handleSubmit" class="card col-6 d-flex align-items-center posts-form">
+  <form @submit.prevent="handleSubmit" class=" bg-transparent card col-12 d-flex align-items-center posts-form ">
     <div class="component text-center">
       <h1 class="text-shadow title">Enter Post Here</h1>
       <div class="form mb-3">
@@ -47,6 +47,7 @@ export default {
             body: {},
             imgurl: {},
           }
+
         } catch (error) {
           Pop.error(error, '[SubmittingForm]')
         }

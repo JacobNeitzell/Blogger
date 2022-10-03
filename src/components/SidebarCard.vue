@@ -6,23 +6,23 @@
         <span class="text-success lighten-30 selectable text-uppercase">
         </span>
       </button>
-      <span class="text-success lighten-30 text-uppercase">Name
+      <span class="text-success lighten-30 text-uppercase">
       </span>
       <div class="col-md-2 d-none d-md-block bg-dark text-light sidebar">
+        <input v-modle="creator.github">
+        <span class="text-success lighten-30 selectable text-uppercase">Github
+        </span>
+
+      </div>
+      <div class="col-md-2 d-none d-md-block bg-dark text-light sidebar">
         <button class="btn" data-bs-target="#loginCanvas" data-bs-toggle="offcanvas">
-          <span class="text-success lighten-30 selectable text-uppercase">Links
+          <span class="text-success lighten-30 selectable text-uppercase">LinkedIn
           </span>
         </button>
       </div>
       <div class="col-md-2 d-none d-md-block bg-dark text-light sidebar">
         <button class="btn" data-bs-target="#loginCanvas" data-bs-toggle="offcanvas">
-          <span class="text-success lighten-30 selectable text-uppercase">Links
-          </span>
-        </button>
-      </div>
-      <div class="col-md-2 d-none d-md-block bg-dark text-light sidebar">
-        <button class="btn" data-bs-target="#loginCanvas" data-bs-toggle="offcanvas">
-          <span class="text-success lighten-30 selectable text-uppercase">Links
+          <span class="text-success lighten-30 selectable text-uppercase">Graduate
           </span>
         </button>
       </div>
@@ -42,9 +42,15 @@
 
 
 <script>
+import { Account } from "../models/Account.js";
 import Login from "./Login.vue";
 export default {
+  props: {
+    account: { type: Account, required: true }
+  },
+
   setup() {
+
     return {};
   },
   components: { Login }
