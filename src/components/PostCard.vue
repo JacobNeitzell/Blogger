@@ -6,6 +6,8 @@
         <div class="card-body">
           <h5>{{posts.body}}</h5>
           <CreatorCard :creator="posts.creator " />
+          <i class="mdi mdi-delete fs-4 selectable rounded" @click.stop="$emit('deletePosts')"
+            v-if="account.id == posts.creatorId"></i>
         </div>
       </div>
 
@@ -27,10 +29,13 @@ import CreatorCard from "./CreatorCard.vue";
 export default {
   props: {
     posts: { type: Post, required: true },
+
   },
-  setup() {
+  setup(props, { emit }) {
     return {
-      coverImg: computed(() => `url(${props.post.coverimg})`)
+      coverImg: computed(() => `url(${props.post.coverimg})`),
+      account: computed(() => AppState.account),
+      deletePosts() { emit('deletePosts') }
     };
   },
   components: { ProfileCard, CreatorCard }

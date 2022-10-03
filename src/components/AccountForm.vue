@@ -16,8 +16,13 @@
           <input type="url" class="form-control" v-model="editable.coverImg" required name="coverImg">
         </div>
         <div>
-          <label for="coverImg">Github</label>
+          <label for="github">Github</label>
           <input type="url" class="form-control" v-model="editable.github" name="Github">
+        </div>
+
+        <div>
+          <label for="linkedin">LinkedIn</label>
+          <input type="url" class="form-control" v-model="editable.linkedin" name="linkedIn">
         </div>
         <div>
           <label for="bio">Bio:</label>

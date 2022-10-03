@@ -1,18 +1,19 @@
 <template>
   <div class="profile-card">
-    <div class="cover-img text-shadow" :style="{backgroundImage:`url(${creator.coverImg})`}">
-
-      <img :src="creator.picture" alt="" height="120">
-      <div class="my-5">
-        <h3>{{creator.name}}
-
-
-          <a v-if="creator.github" :href="creator.github" target="_blank"><i class="mdi mdi-mdiGithub "></i></a>
-          <a v-if="creator.graduated" :href="creator.graduated" target="_blank"><i class="mdi mdiAccountSchool"></i></a>
-          <a v-if="creator.linkedin" :href="creator.linkedin" target="_blank"><i class="mdi mdiLinkedin "></i></a>
-
-
-        </h3>
+    <div class="cover-img text-shadow col-12" :style="{backgroundImage:`url(${creator.coverImg})`}"
+      data-bs-scroll="true">
+      <img :src="creator.picture" alt="" height="100" class="profile-pic">
+      <div class="my-2">
+        <h5>{{creator.name}}
+        </h5>
+        <a v-if="creator.github" :href="creator.github" target="_blank">Github<i
+            class="mdi mdi-github selectable"></i></a>
+        <br>
+        <a v-if="creator.linkedin" :href="creator.linkedin" target="_blank"><i
+            class="mdi mdi-Linkedin selectable "></i>LinkedIn</a>
+        <br>
+        <a v-if="creator.graduated" :href="creator.graduated" target="_blank"><i
+            class="mdi mdi-AccountSchool selectable"></i>Graduate</a>
         <p>{{creator.bio}}</p>
 
       </div>
@@ -48,6 +49,8 @@ export default {
   font-weight: bold;
   letter-spacing: 0.08rem
 }
+
+
 
 .cover-img {
   height: 50vh;

@@ -23,6 +23,16 @@ class PostsService {
     })
     AppState.posts = res.data.posts.map(p => new Post(p))
   }
+  async createPosts(formData) {
+    const res = await api.post('/api/posts', formData)
+    AppState.posts.push(new Post(res.data))
+  }
+
+  async deletePosts(id) {
+    const res = await api.delete(`api/posts/${id}`)
+    AppState.posts = AppState.posts.filter(p => p.id != id)
+  }
+
 
 
 }

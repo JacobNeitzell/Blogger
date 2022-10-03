@@ -1,7 +1,8 @@
 <template>
   <div class="container-fluid">
     <div class=" row">
-      <PostCard v-for="p in posts" :key="p.id" :posts="p" />
+      <PostForm v-if="account.id" />
+      <PostCard v-for="p in posts" :key="p.id" :posts="p" @deletePosts="deletePosts(p.id)" />
       <!-- TODO make next and previous sticky  -->
       <div class="col-12 d-flex justify-content-between">
         <button @click="changePage(newerPage)" :disabled="!newerPage"
@@ -22,6 +23,7 @@ import { AppState } from "../AppState.js";
 import PostCard from "../components/PostCard.vue";
 import { postsService } from '../services/PostsService.js';
 import Pop from "../utils/Pop.js";
+import PostForm from "../components/PostForm.vue";
 export default {
   setup() {
     async function getPost() {
@@ -40,6 +42,20 @@ export default {
       posts: computed(() => AppState.posts),
       newerPage: computed(() => AppState.newerPage),
       olderPage: computed(() => AppState.olderPage),
+      account: computed(() => AppState.account),
+
+
+
+      async deletePosts(id) {
+        try {
+          const yes = await Pop.confirm('Delete the Posts?')
+          if (!yes) { return }
+          await postsService.deletePosts(id)
+        } catch (error) {
+          Pop.error(error, ['DeletePost'])
+        }
+      },
+
       async changePage(page) {
         try {
           await postsService.getPost(page)
@@ -53,7 +69,7 @@ export default {
     };
 
   },
-  components: { PostCard }
+  components: { PostCard, PostForm }
 }
 </script>
 

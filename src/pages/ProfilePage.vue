@@ -1,8 +1,11 @@
 <template>
-  <div class="Profile-Page" v-if="creator">
-    <ProfileCard :creator="creator" />
-    <div>
-      <PostCard v-for="p in posts" :key="p.id" :posts="p" />
+
+  <div class="Profile-Page container-fluid" v-if="creator">
+    <div class="row">
+      <ProfileCard :creator="creator" />
+      <div>
+        <PostCard v-for="p in posts" :key="p.id" :posts="p" />
+      </div>
     </div>
   </div>
   <div v-else>
