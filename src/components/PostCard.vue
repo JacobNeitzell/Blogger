@@ -5,9 +5,11 @@
         <img :src="posts.imgUrl" class="image-fluid">
         <div class="card-body">
           <h5>{{posts.body}}</h5>
+          <i class="mdi mdi-ThumbUpOutline fs-4 selectable rounded"></i>
           <CreatorCard :creator="posts.creator " />
           <i class="mdi mdi-delete fs-4 selectable rounded" @click.stop="$emit('deletePosts')"
             v-if="account.id == posts.creatorId"></i>
+
         </div>
       </div>
 
