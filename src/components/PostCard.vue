@@ -3,9 +3,13 @@
     <div class="col-md-6 col-lg-auto d-flex  justify-content-center">
       <div class="card p-2 elevation-5">
         <img :src="posts.imgUrl" class="image-fluid">
+        <h3><span> {{posts.creator.name}}</span></h3>
         <div class="card-body">
-          <h5>{{posts.body}}</h5>
-          <i class="mdi mdi-Check fs-4 selectable rounded" @click.capture="$emit('toggleLike')">like</i>
+          <h4>{{posts.body}}</h4>
+          <h5>{{new Date(posts.createdAt).toLocaleDateString('en-Us',{month:'short', day:'2-digit', year:'2-digit'})}}
+          </h5>
+          <i class="mdi mdi-Check fs-4 selectable rounded"
+            @click.capture="$emit('toggleLike')">like</i><span>{{posts.likeIds.length}}</span>
           <CreatorCard :creator="posts.creator " />
           <i class="mdi mdi-delete fs-4 selectable rounded" @click.stop="$emit('deletePosts')"
             v-if="account.id == posts.creatorId"></i>

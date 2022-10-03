@@ -11,7 +11,7 @@ export class Post {
     this.creator = new Account(data.creator)
     this.page = data.page
     this.totalPages = data.totalPages
-
+    this.createdAt = data.createdAt
 
 
   }

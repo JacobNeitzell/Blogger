@@ -4,7 +4,7 @@
       <SearchForm />
       <PostForm v-if="account.id" />
       <PostCard v-for="p in posts" :key="p.id" :posts="p" @deletePosts="deletePosts(p.id)"
-        @toggleLike="toggleLike(p.id)" v-on:editable.likedId="callbackFunction" />
+        @toggleLike="toggleLike(p.id)" />
       <!-- TODO make next and previous sticky  -->
       <div class="col-12 d-flex justify-content-between">
         <button @click="changePage(newerPage)" :disabled="!newerPage"
