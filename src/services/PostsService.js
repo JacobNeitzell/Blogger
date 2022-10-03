@@ -16,7 +16,10 @@ class PostsService {
   }
 
 
-
+  async toggleLike(id) {
+    const res = await api.post(`api/posts/${id}/like`)
+    console.log(res.data)
+  }
 
 
 

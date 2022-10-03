@@ -3,7 +3,8 @@
     <div class=" row">
       <SearchForm />
       <PostForm v-if="account.id" />
-      <PostCard v-for="p in posts" :key="p.id" :posts="p" @deletePosts="deletePosts(p.id)" />
+      <PostCard v-for="p in posts" :key="p.id" :posts="p" @deletePosts="deletePosts(p.id)"
+        @toggleLike="toggleLike(p.id)" v-on:editable.likedId="callbackFunction" />
       <!-- TODO make next and previous sticky  -->
       <div class="col-12 d-flex justify-content-between">
         <button @click="changePage(newerPage)" :disabled="!newerPage"
@@ -19,7 +20,7 @@
 
 <script>
 import { computed } from "@vue/reactivity";
-import { onMounted } from "vue";
+import { onMounted, popScopeId } from "vue";
 import { AppState } from "../AppState.js";
 import PostCard from "../components/PostCard.vue";
 import { postsService } from '../services/PostsService.js';
@@ -28,6 +29,10 @@ import PostForm from "../components/PostForm.vue";
 import SearchForm from "../components/SearchForm.vue";
 export default {
   setup() {
+
+
+
+
     async function getPost() {
       try {
         await postsService.getPost()
@@ -57,6 +62,23 @@ export default {
           Pop.error(error, ['DeletePost'])
         }
       },
+
+      async toggleLike(id) {
+        try {
+          if (await Pop.confirm("You Like?")) {
+            await postsService.toggleLike(id)
+            Pop.success("You Did Like!")
+          } else {
+            Pop.success("You did not like this post")
+          }
+        } catch (error) {
+          Pop.error(error, '[Liked]')
+
+        }
+      },
+
+
+
 
       async changePage(page) {
         try {

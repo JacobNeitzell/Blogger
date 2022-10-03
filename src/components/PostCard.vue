@@ -5,7 +5,7 @@
         <img :src="posts.imgUrl" class="image-fluid">
         <div class="card-body">
           <h5>{{posts.body}}</h5>
-          <i class="mdi mdi-ThumbUpOutline fs-4 selectable rounded"></i>
+          <i class="mdi mdi-Check fs-4 selectable rounded" @click.capture="$emit('toggleLike')">like</i>
           <CreatorCard :creator="posts.creator " />
           <i class="mdi mdi-delete fs-4 selectable rounded" @click.stop="$emit('deletePosts')"
             v-if="account.id == posts.creatorId"></i>
@@ -37,7 +37,8 @@ export default {
     return {
       coverImg: computed(() => `url(${props.post.coverimg})`),
       account: computed(() => AppState.account),
-      deletePosts() { emit('deletePosts') }
+      deletePosts() { emit('deletePosts') },
+      toggleLike() { emit('toggleLike') }
     };
   },
   components: { ProfileCard, CreatorCard }
